@@ -1,0 +1,85 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+$"
+        },
+        "dedicatedCapacityName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 63,
+            "pattern": "^[a-z][a-z0-9]*$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Provision request specification",
+            "properties": {
+                "properties": {
+                    "description": "Properties of the provision operation request.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "administration": {
+                            "description": "A collection of Dedicated capacity administrators",
+                            "properties": {
+                                "members": {
+                                    "description": "An array of administrator user identities.",
+                                    "items": {
+                                        "description": "The UPN of the user. For example: johnsmith@contoso.com.",
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "sku": {
+                    "description": "The SKU of the Dedicated capacity resource.",
+                    "properties": {
+                        "name": {
+                            "description": "Name of the SKU level.",
+                            "type": "string"
+                        },
+                        "tier": {
+                            "description": "The name of the Azure pricing tier to which the SKU applies.",
+                            "enum": [
+                                "PBIE_Azure"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SkuTier"
+                            }
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "tags": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pairs of additional provisioning properties.",
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

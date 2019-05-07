@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "properties": {
+        "location": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Details of capacity name request body.",
+            "properties": {
+                "name": {
+                    "description": "Name for checking availability.",
+                    "maxLength": 63,
+                    "minLength": 3,
+                    "pattern": "^[a-z][a-z0-9]*$",
+                    "type": "string"
+                },
+                "type": {
+                    "default": "Microsoft.PowerBIDedicated/capacities",
+                    "description": "The resource type of PowerBI dedicated.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
